@@ -13,6 +13,7 @@
             --amarillo-fijo: #FFD700;
         }
 
+        /* RESET PARA MÓVILES */
         input, select, button {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -79,6 +80,7 @@
             width: 100%; margin-bottom: 10px; padding: 12px; font-weight: bold; 
             border: 2px solid var(--negro); background-color: white; color: var(--negro);
             box-sizing: border-box;
+            font-size: 16px; /* Evita zoom automático en iPhone */
         }
 
         .btn-agregar {
@@ -150,31 +152,27 @@
                         </select>
                         <select id="talla-tshirt">
                             <option value="">SELECCIONA TALLA</option>
-                            <optgroup label="INFANTILES (EDAD)">
+                            <optgroup label="INFANTILES">
                                 <option value="2T">2T (2 años)</option>
                                 <option value="3T">3T (3 años)</option>
                                 <option value="4T">4T (4 años)</option>
-                                <option value="4">4 (4–5 años)</option>
-                                <option value="5">5 (5–6 años)</option>
-                                <option value="6">6 (6–7 años)</option>
-                                <option value="7">7 (7–8 años)</option>
-                                <option value="8">8 (8–9 años)</option>
-                                <option value="10">10 (9–10 años)</option>
-                                <option value="12">12 (10–11 años)</option>
-                                <option value="14">14 (11–12 años)</option>
-                                <option value="16">16 (12–13 años approx.)</option>
+                                <option value="4">4 (4-5 años)</option>
+                                <option value="5">5 (5-6 años)</option>
+                                <option value="6">6 (6-7 años)</option>
+                                <option value="7">7 (7-8 años)</option>
+                                <option value="8">8 (8-9 años)</option>
+                                <option value="10">10 (9-10 años)</option>
+                                <option value="12">12 (10-11 años)</option>
+                                <option value="14">14 (11-12 años)</option>
+                                <option value="16">16 (12-13 años)</option>
                             </optgroup>
-                            <optgroup label="TRANSICIÓN">
+                            <optgroup label="JUVENIL / ADULTO">
                                 <option value="XXS">XXS</option>
                                 <option value="XS">XS</option>
-                            </optgroup>
-                            <optgroup label="ESTÁNDAR">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
-                            </optgroup>
-                            <optgroup label="GRANDES">
                                 <option value="XXL">XXL</option>
                             </optgroup>
                         </select>
@@ -195,31 +193,27 @@
                         </select>
                         <select id="talla-abrigo">
                             <option value="">SELECCIONA TALLA</option>
-                            <optgroup label="INFANTILES (EDAD)">
+                            <optgroup label="INFANTILES">
                                 <option value="2T">2T (2 años)</option>
                                 <option value="3T">3T (3 años)</option>
                                 <option value="4T">4T (4 años)</option>
-                                <option value="4">4 (4–5 años)</option>
-                                <option value="5">5 (5–6 años)</option>
-                                <option value="6">6 (6–7 años)</option>
-                                <option value="7">7 (7–8 años)</option>
-                                <option value="8">8 (8–9 años)</option>
-                                <option value="10">10 (9–10 años)</option>
-                                <option value="12">12 (10–11 años)</option>
-                                <option value="14">14 (11–12 años)</option>
-                                <option value="16">16 (12–13 años approx.)</option>
+                                <option value="4">4 (4-5 años)</option>
+                                <option value="5">5 (5-6 años)</option>
+                                <option value="6">6 (6-7 años)</option>
+                                <option value="7">7 (7-8 años)</option>
+                                <option value="8">8 (8-9 años)</option>
+                                <option value="10">10 (9-10 años)</option>
+                                <option value="12">12 (10-11 años)</option>
+                                <option value="14">14 (11-12 años)</option>
+                                <option value="16">16 (12-13 años)</option>
                             </optgroup>
-                            <optgroup label="TRANSICIÓN">
+                            <optgroup label="JUVENIL / ADULTO">
                                 <option value="XXS">XXS</option>
                                 <option value="XS">XS</option>
-                            </optgroup>
-                            <optgroup label="ESTÁNDAR">
                                 <option value="S">S</option>
                                 <option value="M">M</option>
                                 <option value="L">L</option>
                                 <option value="XL">XL</option>
-                            </optgroup>
-                            <optgroup label="GRANDES">
                                 <option value="XXL">XXL</option>
                             </optgroup>
                         </select>
@@ -338,7 +332,7 @@
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
             try {
-                const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec"; 
+                const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec?v=" + Date.now(); 
                 await fetch(URL_GOOGLE, {
                     method: 'POST',
                     mode: 'no-cors',
