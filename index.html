@@ -10,10 +10,9 @@
             --rojo: #E31E24;
             --negro: #0A0A0A;
             --beige: #dcd0b9;
-            --amarillo-fijo: #FFD700; /* Amarillo oro estándar */
+            --amarillo-fijo: #FFD700;
         }
 
-        /* RESET PARA MÓVILES */
         input, select, button {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -23,7 +22,6 @@
         }
 
         body {
-            /* Fallback de fuentes robusto para que se vea igual en PC y Celular */
             font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
             background-color: #f0f0f0;
             margin: 0; padding: 0;
@@ -89,13 +87,11 @@
             font-size: 1rem; text-transform: uppercase;
         }
 
-        .btn-agregar:active { background: var(--negro); }
-
         .resumen-pedido {
             margin: 30px 0; border: 3px solid var(--negro); padding: 15px; background: #fff;
         }
         
-        table { width: 100%; border-collapse: collapse; min-width: 300px; }
+        table { width: 100%; border-collapse: collapse; }
         th { background: var(--negro); color: white; padding: 10px; text-align: left; font-size: 0.7rem; }
         td { padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 0.8rem; }
 
@@ -109,7 +105,6 @@
         
         .titular-cuenta { display: block; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; color: #fff; }
         
-        /* FUERZA EL COLOR AMARILLO Y EVITA EL AZUL DE ENLACE */
         .numero-cuenta { 
             color: var(--amarillo-fijo) !important; 
             font-family: 'Courier New', Courier, monospace; 
@@ -155,10 +150,33 @@
                         </select>
                         <select id="talla-tshirt">
                             <option value="">SELECCIONA TALLA</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
+                            <optgroup label="INFANTILES (EDAD)">
+                                <option value="2T">2T (2 años)</option>
+                                <option value="3T">3T (3 años)</option>
+                                <option value="4T">4T (4 años)</option>
+                                <option value="4">4 (4–5 años)</option>
+                                <option value="5">5 (5–6 años)</option>
+                                <option value="6">6 (6–7 años)</option>
+                                <option value="7">7 (7–8 años)</option>
+                                <option value="8">8 (8–9 años)</option>
+                                <option value="10">10 (9–10 años)</option>
+                                <option value="12">12 (10–11 años)</option>
+                                <option value="14">14 (11–12 años)</option>
+                                <option value="16">16 (12–13 años approx.)</option>
+                            </optgroup>
+                            <optgroup label="TRANSICIÓN">
+                                <option value="XXS">XXS</option>
+                                <option value="XS">XS</option>
+                            </optgroup>
+                            <optgroup label="ESTÁNDAR">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </optgroup>
+                            <optgroup label="GRANDES">
+                                <option value="XXL">XXL</option>
+                            </optgroup>
                         </select>
                         <input type="number" id="cant-tshirt" value="1" min="1">
                         <button class="btn-agregar" onclick="agregarAlPedido('T-SHIRT')">AÑADIR AL PEDIDO</button>
@@ -177,10 +195,33 @@
                         </select>
                         <select id="talla-abrigo">
                             <option value="">SELECCIONA TALLA</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
+                            <optgroup label="INFANTILES (EDAD)">
+                                <option value="2T">2T (2 años)</option>
+                                <option value="3T">3T (3 años)</option>
+                                <option value="4T">4T (4 años)</option>
+                                <option value="4">4 (4–5 años)</option>
+                                <option value="5">5 (5–6 años)</option>
+                                <option value="6">6 (6–7 años)</option>
+                                <option value="7">7 (7–8 años)</option>
+                                <option value="8">8 (8–9 años)</option>
+                                <option value="10">10 (9–10 años)</option>
+                                <option value="12">12 (10–11 años)</option>
+                                <option value="14">14 (11–12 años)</option>
+                                <option value="16">16 (12–13 años approx.)</option>
+                            </optgroup>
+                            <optgroup label="TRANSICIÓN">
+                                <option value="XXS">XXS</option>
+                                <option value="XS">XS</option>
+                            </optgroup>
+                            <optgroup label="ESTÁNDAR">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </optgroup>
+                            <optgroup label="GRANDES">
+                                <option value="XXL">XXL</option>
+                            </optgroup>
                         </select>
                         <input type="number" id="cant-abrigo" value="1" min="1">
                         <button class="btn-agregar" onclick="agregarAlPedido('ABRIGO')">AÑADIR AL PEDIDO</button>
@@ -226,7 +267,6 @@
                 <input type="text" id="whatsapp" class="final" placeholder="TU WHATSAPP" required>
                 <button type="submit" id="btnConfirmar" class="final">CONFIRMAR TODO EL PEDIDO</button>
             </form>
-
         </div>
     </div>
 
@@ -265,7 +305,6 @@
             const cuerpo = document.getElementById('cuerpo-tabla');
             const msg = document.getElementById('vacio-msg');
             cuerpo.innerHTML = "";
-            
             if (carrito.length === 0) {
                 msg.style.display = "block";
             } else {
@@ -286,23 +325,18 @@
         document.getElementById('orderForm').onsubmit = async (e) => {
             e.preventDefault();
             const btn = document.getElementById('btnConfirmar');
-            
             if (carrito.length === 0) {
                 alert("Debes añadir al menos una prenda a la lista.");
                 return;
             }
-
             let resumenTexto = carrito.map(i => `${i.cantidad}x ${i.tipo} (${i.color}, Talla ${i.talla})`).join(" | ");
-
             const datos = {
                 nombre: document.getElementById('nombre').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 pedido: resumenTexto
             };
-
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
-
             try {
                 const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec"; 
                 await fetch(URL_GOOGLE, {
@@ -311,7 +345,6 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(datos)
                 });
-
                 alert("¡Pedido enviado con éxito! Nos pondremos en contacto.");
                 carrito = [];
                 renderizarTabla();
