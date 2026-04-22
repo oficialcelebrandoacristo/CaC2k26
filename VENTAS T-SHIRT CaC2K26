@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Celebrando a Cristo 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <header>
+        <div class="banner-diagonal"></div>
+        <h1>LA CRUZ</h1>
+        <p class="event-info">14 Y 15 DE JULIO | PLAY DE GUAYMATE</p>
+    </header>
+
+    <main>
+        <section class="productos">
+            <h2>ELIGE TU PRENDA</h2>
+            <div class="grid-prendas">
+                <div class="card" onclick="seleccionar('Beige')">
+                    <img src="img_beige.jpg" alt="T-shirt Beige">
+                    <p>Edición Beige</p>
+                </div>
+                <div class="card" onclick="seleccionar('Rojo')">
+                    <img src="img_roja.jpg" alt="T-shirt Rojo">
+                    <p>Edición Roja</p>
+                </div>
+            </div>
+        </section>
+
+        <form id="registroForm">
+            <input type="hidden" id="prenda_color" name="prenda_color" required>
+            
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+            </div>
+
+            <div class="form-group">
+                <label>WhatsApp</label>
+                <input type="tel" id="telefono" placeholder="809-000-0000" required>
+            </div>
+
+            <div class="form-group">
+                <label>Talla</label>
+                <select id="talla" required>
+                    <option value="">Selecciona una talla</option>
+                    <option value="S">S (Pequeña)</option>
+                    <option value="M">M (Mediana)</option>
+                    <option value="L">L (Grande)</option>
+                    <option value="XL">XL (Extra Grande)</option>
+                </select>
+            </div>
+
+            <button type="submit" id="btnEnviar">CONFIRMAR PEDIDO</button>
+        </form>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

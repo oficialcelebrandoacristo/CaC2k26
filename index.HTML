@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo La Cruz 2026</title>
+    <style>
+        :root {
+            --rojo: #E31E24;
+            --negro: #0A0A0A;
+            --beige: #dcd0b9;
+        }
+
+        body {
+            font-family: 'Arial Black', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        .diagonal-bg {
+            position: fixed; top: 0; left: -20%; width: 100%; height: 120%;
+            background: var(--rojo); transform: rotate(-15deg); z-index: -1;
+            box-shadow: 10px 0 50px rgba(0,0,0,0.5);
+        }
+
+        .main-container {
+            max-width: 800px; background: white;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            margin: 40px 0; border-top: 10px solid #7B0D0D;
+        }
+
+        header { background: var(--negro); color: white; text-align: center; padding: 30px; }
+        header h1 { margin: 0; font-size: 40px; }
+        header h1 span { color: var(--rojo); }
+
+        .content { padding: 30px; }
+
+        .container-prendas {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-bottom: 20px;
+        }
+
+        .grupo { width: 320px; }
+
+        .label-tipo {
+            text-align: center; font-size: 1.1rem; margin-bottom: 10px;
+            background: var(--negro); color: white; padding: 8px;
+        }
+
+        .crop-window {
+            width: 320px; height: 380px; overflow: hidden;
+            border: 4px solid #eee; background-color: white; position: relative;
+        }
+
+        .crop-window img {
+            position: absolute; width: 320px; height: auto; display: block; top: -10px; 
+        }
+
+        .controles-prenda {
+            background: #f4f4f4; padding: 15px; border: 2px solid var(--negro); margin-top: 10px;
+        }
+
+        .controles-prenda select, .controles-prenda input {
+            width: 100%; margin-bottom: 10px; padding: 10px; font-weight: bold; border: 2px solid var(--negro); font-family: sans-serif;
+        }
+
+        .btn-agregar {
+            background: var(--rojo); color: white; border: none; padding: 12px;
+            width: 100%; cursor: pointer; font-family: 'Arial Black'; font-size: 0.9rem;
+        }
+
+        .btn-agregar:hover { background: var(--negro); }
+
+        .resumen-pedido {
+            margin: 30px 0; border: 3px solid var(--negro); padding: 20px; background: #fff;
+        }
+        .resumen-pedido h3 { margin-top: 0; border-bottom: 4px solid var(--rojo); padding-bottom: 10px; text-transform: uppercase; }
+
+        table { width: 100%; border-collapse: collapse; font-family: sans-serif; }
+        th { background: var(--negro); color: white; padding: 10px; text-align: left; font-size: 0.8rem; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; font-weight: bold; font-size: 0.9rem; }
+
+        .btn-borrar { background: var(--rojo); color: white; border: none; padding: 5px 10px; cursor: pointer; font-weight: bold; }
+
+        .seccion-pagos-integrada {
+            margin: 30px 0; padding: 25px; background: var(--negro); color: white; border-bottom: 5px solid var(--rojo);
+        }
+        .titulo-pagos { text-align: center; color: var(--rojo); margin-bottom: 20px; letter-spacing: 2px; }
+        .cuentas-flex { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; }
+        .banco-card-new { text-align: center; flex: 1; min-width: 250px; }
+        .banco-logo-new { height: 40px; margin-bottom: 10px; }
+        .titular-cuenta { font-family: 'Arial Black'; display: block; margin-bottom: 5px; font-size: 0.8rem; text-transform: uppercase; }
+        .numero-cuenta { color: gold; font-family: monospace; font-size: 1.1rem; font-weight: bold; }
+
+        form { border-top: 4px solid var(--negro); padding-top: 30px; }
+        input.final, button.final {
+            width: 100%; padding: 15px; margin: 10px 0; border: 2px solid var(--negro); box-sizing: border-box; font-family: 'Arial Black';
+        }
+        button.final { background: var(--negro); color: white; font-size: 1.2rem; cursor: pointer; }
+        button.final:hover { background: var(--rojo); }
+
+    </style>
+</head>
+<body>
+
+    <div class="diagonal-bg"></div>
+
+    <div class="main-container">
+        <header>
+            <p style="letter-spacing: 5px;">CELEBRANDO A CRISTO EDICION</p>
+            <h1><span>LA CRUZ</span></h1>
+        </header>
+
+        <div class="content">
+            
+            <div class="container-prendas">
+                <div class="grupo">
+                    <div class="label-tipo">T-SHIRTS</div>
+                    <div class="crop-window">
+                        <img src="IMG_2392.jpg" alt="T-shirts">
+                    </div>
+                    <div class="controles-prenda">
+                        <select id="color-tshirt">
+                            <option value="BEIGE">COLOR: BEIGE</option>
+                            <option value="ROJO">COLOR: ROJO</option>
+                        </select>
+                        <select id="talla-tshirt">
+                            <option value="">SELECCIONA TALLA</option>
+                            <optgroup label="INFANTIL (EDAD)">
+                                <option value="2T">2T (2 años)</option>
+                                <option value="3T">3T (3 años)</option>
+                                <option value="4T">4T (4 años)</option>
+                                <option value="4">4 (4–5 años)</option>
+                                <option value="5">5 (5–6 años)</option>
+                                <option value="6">6 (6–7 años)</option>
+                                <option value="7">7 (7–8 años)</option>
+                                <option value="8">8 (8–9 años)</option>
+                                <option value="10">10 (9–10 años)</option>
+                                <option value="12">12 (10–11 años)</option>
+                                <option value="14">14 (11–12 años)</option>
+                                <option value="16">16 (12–13 años)</option>
+                            </optgroup>
+                            <optgroup label="JUVENIL / ADULTO">
+                                <option value="XXS">XXS</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </optgroup>
+                        </select>
+                        <input type="number" id="cant-tshirt" value="1" min="1">
+                        <button class="btn-agregar" onclick="agregarAlPedido('T-SHIRT')">AÑADIR AL PEDIDO</button>
+                    </div>
+                </div>
+
+                <div class="grupo">
+                    <div class="label-tipo">ABRIGOS</div>
+                    <div class="crop-window">
+                        <img src="IMG_2393.jpg" alt="Abrigos">
+                    </div>
+                    <div class="controles-prenda">
+                        <select id="color-abrigo">
+                            <option value="BEIGE">COLOR: BEIGE</option>
+                            <option value="ROJO">COLOR: ROJO</option>
+                        </select>
+                        <select id="talla-abrigo">
+                            <option value="">SELECCIONA TALLA</option>
+                            <optgroup label="INFANTIL (EDAD)">
+                                <option value="2T">2T (2 años)</option>
+                                <option value="3T">3T (3 años)</option>
+                                <option value="4T">4T (4 años)</option>
+                                <option value="4">4 (4–5 años)</option>
+                                <option value="5">5 (5–6 años)</option>
+                                <option value="6">6 (6–7 años)</option>
+                                <option value="7">7 (7–8 años)</option>
+                                <option value="8">8 (8–9 años)</option>
+                                <option value="10">10 (9–10 años)</option>
+                                <option value="12">12 (10–11 años)</option>
+                                <option value="14">14 (11–12 años)</option>
+                                <option value="16">16 (12–13 años)</option>
+                            </optgroup>
+                            <optgroup label="JUVENIL / ADULTO">
+                                <option value="XXS">XXS</option>
+                                <option value="XS">XS</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </optgroup>
+                        </select>
+                        <input type="number" id="cant-abrigo" value="1" min="1">
+                        <button class="btn-agregar" onclick="agregarAlPedido('ABRIGO')">AÑADIR AL PEDIDO</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resumen-pedido">
+                <h3>TU LISTA DE PEDIDO</h3>
+                <table id="tabla-pedidos">
+                    <thead>
+                        <tr>
+                            <th>PRENDA</th>
+                            <th>COLOR</th>
+                            <th>TALLA</th>
+                            <th>CANT.</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla"></tbody>
+                </table>
+                <p id="vacio-msg" style="text-align: center; color: #888; padding: 10px;">No has añadido nada aún.</p>
+            </div>
+
+            <div class="seccion-pagos-integrada">
+                <p class="titulo-pagos">MÉTODOS DE TRANSFERENCIA</p>
+                <div class="cuentas-flex">
+                    <div class="banco-card-new">
+                        <img src="logo-banreservas.webp" alt="Banreservas" class="banco-logo-new">
+                        <span class="titular-cuenta">SARDIS YOSAYRA SEVERINO YOACHIN</span>
+                        <span class="numero-cuenta">9603308710</span>
+                    </div>
+                    <div class="banco-card-new">
+                        <img src="Logo BHD.png" alt="BHD" class="banco-logo-new">
+                        <span class="titular-cuenta">LUDY JUNIOR MARTE HERRERA</span>
+                        <span class="numero-cuenta">32124550010</span>
+                    </div>
+                </div>
+            </div>
+
+            <form id="orderForm">
+                <input type="text" id="nombre" class="final" placeholder="TU NOMBRE COMPLETO" required>
+                <input type="text" id="whatsapp" class="final" placeholder="TU WHATSAPP" required>
+                <button type="submit" id="btnConfirmar" class="final">CONFIRMAR TODO EL PEDIDO</button>
+            </form>
+
+        </div>
+    </div>
+
+    <script>
+        let carrito = [];
+
+        function agregarAlPedido(tipo) {
+            const idPrefijo = tipo === 'T-SHIRT' ? 'tshirt' : 'abrigo';
+            const color = document.getElementById(`color-${idPrefijo}`).value;
+            const talla = document.getElementById(`talla-${idPrefijo}`).value;
+            const cantidad = document.getElementById(`cant-${idPrefijo}`).value;
+
+            if (!talla) {
+                alert("Por favor, selecciona una talla antes de añadir.");
+                return;
+            }
+
+            const item = {
+                id: Date.now(),
+                tipo: tipo,
+                color: color,
+                talla: talla,
+                cantidad: cantidad
+            };
+
+            carrito.push(item);
+            renderizarTabla();
+        }
+
+        function borrarItem(id) {
+            carrito = carrito.filter(item => item.id !== id);
+            renderizarTabla();
+        }
+
+        function renderizarTabla() {
+            const cuerpo = document.getElementById('cuerpo-tabla');
+            const msg = document.getElementById('vacio-msg');
+            cuerpo.innerHTML = "";
+            
+            if (carrito.length === 0) {
+                msg.style.display = "block";
+            } else {
+                msg.style.display = "none";
+                carrito.forEach(item => {
+                    const fila = `<tr>
+                        <td>${item.tipo}</td>
+                        <td>${item.color}</td>
+                        <td>${item.talla}</td>
+                        <td>${item.cantidad}</td>
+                        <td><button class="btn-borrar" onclick="borrarItem(${item.id})">X</button></td>
+                    </tr>`;
+                    cuerpo.innerHTML += fila;
+                });
+            }
+        }
+
+        document.getElementById('orderForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btnConfirmar');
+            
+            if (carrito.length === 0) {
+                alert("Debes añadir al menos una prenda a la lista.");
+                return;
+            }
+
+            let resumenTexto = carrito.map(i => `${i.cantidad}x ${i.tipo} (${i.color}, Talla ${i.talla})`).join(" | ");
+
+            const datos = {
+                nombre: document.getElementById('nombre').value,
+                whatsapp: document.getElementById('whatsapp').value,
+                pedido: resumenTexto
+            };
+
+            btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
+
+            try {
+                // URL DE GOOGLE APPS SCRIPT INTEGRADA
+                const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec"; 
+                
+                await fetch(URL_GOOGLE, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(datos)
+                });
+
+                alert("¡Pedido enviado con éxito! Revisa la hoja de cálculo.");
+                carrito = [];
+                renderizarTabla();
+                e.target.reset();
+            } catch (error) {
+                alert("Hubo un error al enviar. Revisa tu conexión.");
+            } finally {
+                btn.innerText = "CONFIRMAR TODO EL PEDIDO";
+                btn.disabled = false;
+            }
+        };
+    </script>
+
+</body>
+</html>
