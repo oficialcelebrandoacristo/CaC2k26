@@ -79,7 +79,7 @@
             width: 100%; margin-bottom: 10px; padding: 12px; font-weight: bold; 
             border: 2px solid var(--negro); background-color: white; color: var(--negro);
             box-sizing: border-box;
-            font-size: 16px; /* Evita zoom molesto en móviles */
+            font-size: 16px; 
         }
 
         .btn-agregar {
@@ -265,7 +265,14 @@
 
             <form id="orderForm">
                 <input type="text" id="nombre" class="final" placeholder="TU NOMBRE COMPLETO" required>
-                <input type="text" id="whatsapp" class="final" placeholder="TU WHATSAPP" required>
+                <input type="text" id="whatsapp" class="final" 
+                       placeholder="WHATSAPP (Ej: 8091234567)" 
+                       pattern="[0-9]{10}" 
+                       inputmode="numeric" 
+                       maxlength="10" 
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                       title="Introduce los 10 dígitos (Ej: 8097771234)" 
+                       required>
                 <button type="submit" id="btnConfirmar" class="final">CONFIRMAR TODO EL PEDIDO</button>
             </form>
         </div>
@@ -285,7 +292,6 @@
                 return;
             }
 
-            // CREACIÓN DE ITEM ÚNICO PARA EVITAR DUPLICADOS
             const item = {
                 uniqueId: Date.now() + Math.random(),
                 tipo: tipo,
@@ -333,7 +339,6 @@
                 return;
             }
 
-            // LÓGICA DE PROCESAMIENTO LIMPIO: Recorre el array REAL del carrito
             let resumenParaEnviar = "";
             for (let i = 0; i < carrito.length; i++) {
                 const item = carrito[i];
