@@ -281,7 +281,7 @@
 
     <script>
         let carrito = [];
-        let isSending = false; // Bandera global para evitar duplicados
+        let isSending = false;
 
         function agregarAlPedido(tipo) {
             const idPrefijo = tipo === 'T-SHIRT' ? 'tshirt' : 'abrigo';
@@ -325,7 +325,7 @@
                         <td>${item.color}</td>
                         <td>${item.talla}</td>
                         <td>${item.cantidad}</td>
-                        <td><button type="button" style="background:var(--rojo); color:white; border:none; padding:5px 10px;" onclick="borrarItem(${item.uniqueId})">X</button></td>
+                        <td><button type="button" style="background:var(--rojo); color:white; border:none; padding:5px 10px; cursor:pointer;" onclick="borrarItem(${item.uniqueId})">X</button></td>
                     </tr>`;
                     cuerpo.innerHTML += fila;
                 });
@@ -335,7 +335,6 @@
         document.getElementById('orderForm').onsubmit = async (e) => {
             e.preventDefault();
             
-            // PROTECCIÓN: Si ya se está enviando, ignorar nuevos clics
             if (isSending) return;
 
             const btn = document.getElementById('btnConfirmar');
@@ -345,19 +344,13 @@
                 return;
             }
 
-            // ACTIVAR BLOQUEO
             isSending = true;
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
-            let resumenParaEnviar = "";
-            for (let i = 0; i < carrito.length; i++) {
-                const item = carrito[i];
-                resumenParaEnviar += `${item.cantidad}x ${item.tipo} (${item.color}, Talla ${item.talla})`;
-                if (i < carrito.length - 1) {
-                    resumenParaEnviar += " | ";
-                }
-            }
+            let resumenParaEnviar = carrito.map(item => 
+                `${item.cantidad}x ${item.tipo} (${item.color}, Talla ${item.talla})`
+            ).join(" | ");
 
             const datos = {
                 nombre: document.getElementById('nombre').value.trim(),
@@ -366,7 +359,6 @@
             };
 
             try {
-                // Se agrega timestamp a la URL para evitar problemas de caché
                 const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec?v=" + Date.now(); 
                 
                 await fetch(URL_GOOGLE, {
@@ -383,7 +375,6 @@
             } catch (error) {
                 alert("Hubo un error al enviar. Intenta de nuevo.");
             } finally {
-                // LIBERAR BLOQUEO: Pase lo que pase (éxito o error), se reactiva el botón
                 isSending = false;
                 btn.innerText = "CONFIRMAR TODO EL PEDIDO";
                 btn.disabled = false;
