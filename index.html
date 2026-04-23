@@ -118,7 +118,8 @@
         input.final, button.final {
             width: 100%; padding: 18px; margin: 10px 0; border: 2px solid var(--negro); box-sizing: border-box; font-family: 'Arial Black', sans-serif;
         }
-        button.final { background: var(--negro); color: white; font-size: 1rem; cursor: pointer; text-transform: uppercase; }
+        button.final { background: var(--negro); color: white; font-size: 1rem; cursor: pointer; text-transform: uppercase; transition: opacity 0.3s; }
+        button.final:disabled { opacity: 0.5; cursor: not-allowed; }
 
         @media (min-width: 600px) {
             .cuentas-flex { display: flex; justify-content: space-around; }
@@ -280,6 +281,7 @@
 
     <script>
         let carrito = [];
+        let isSending = false; // Bandera global para evitar duplicados
 
         function agregarAlPedido(tipo) {
             const idPrefijo = tipo === 'T-SHIRT' ? 'tshirt' : 'abrigo';
@@ -332,12 +334,21 @@
 
         document.getElementById('orderForm').onsubmit = async (e) => {
             e.preventDefault();
+            
+            // PROTECCIÓN: Si ya se está enviando, ignorar nuevos clics
+            if (isSending) return;
+
             const btn = document.getElementById('btnConfirmar');
             
             if (carrito.length === 0) {
                 alert("Debes añadir al menos una prenda a la lista.");
                 return;
             }
+
+            // ACTIVAR BLOQUEO
+            isSending = true;
+            btn.innerText = "ENVIANDO...";
+            btn.disabled = true;
 
             let resumenParaEnviar = "";
             for (let i = 0; i < carrito.length; i++) {
@@ -354,10 +365,8 @@
                 pedido: resumenParaEnviar
             };
 
-            btn.innerText = "ENVIANDO...";
-            btn.disabled = true;
-
             try {
+                // Se agrega timestamp a la URL para evitar problemas de caché
                 const URL_GOOGLE = "https://script.google.com/macros/s/AKfycbwgK61Z2zgMX5kMmMbJyvcdzsy_K_KQT7bEVoj4MpXm8n2R8P3n1xvmcazdSaPCUL50/exec?v=" + Date.now(); 
                 
                 await fetch(URL_GOOGLE, {
@@ -374,6 +383,8 @@
             } catch (error) {
                 alert("Hubo un error al enviar. Intenta de nuevo.");
             } finally {
+                // LIBERAR BLOQUEO: Pase lo que pase (éxito o error), se reactiva el botón
+                isSending = false;
                 btn.innerText = "CONFIRMAR TODO EL PEDIDO";
                 btn.disabled = false;
             }
