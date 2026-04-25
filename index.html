@@ -60,6 +60,13 @@
             text-align: center; font-size: 1.1rem; margin-bottom: 10px;
             background: var(--negro); color: white; padding: 12px;
             text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .precio-tag {
+            color: var(--amarillo-fijo);
+            display: block;
+            font-size: 1.2rem;
         }
 
         .crop-window {
@@ -141,7 +148,10 @@
             
             <div class="container-prendas">
                 <div class="grupo">
-                    <div class="label-tipo">T-SHIRTS</div>
+                    <div class="label-tipo">
+                        T-SHIRTS
+                        <span class="precio-tag">RD$ 500</span>
+                    </div>
                     <div class="crop-window">
                         <img src="IMG_2392.jpg" alt="T-shirts">
                     </div>
@@ -186,7 +196,10 @@
                 </div>
 
                 <div class="grupo">
-                    <div class="label-tipo">ABRIGOS</div>
+                    <div class="label-tipo">
+                        ABRIGOS
+                        <span class="precio-tag">RD$ 1,000</span>
+                    </div>
                     <div class="crop-window">
                         <img src="IMG_2393.jpg" alt="Abrigos">
                     </div>
@@ -281,7 +294,7 @@
 
     <script>
         let carrito = [];
-        let isSending = false;
+        let isSending = false; 
 
         function agregarAlPedido(tipo) {
             const idPrefijo = tipo === 'T-SHIRT' ? 'tshirt' : 'abrigo';
@@ -325,7 +338,7 @@
                         <td>${item.color}</td>
                         <td>${item.talla}</td>
                         <td>${item.cantidad}</td>
-                        <td><button type="button" style="background:var(--rojo); color:white; border:none; padding:5px 10px; cursor:pointer;" onclick="borrarItem(${item.uniqueId})">X</button></td>
+                        <td><button type="button" style="background:var(--rojo); color:white; border:none; padding:5px 10px;" onclick="borrarItem(${item.uniqueId})">X</button></td>
                     </tr>`;
                     cuerpo.innerHTML += fila;
                 });
@@ -334,7 +347,6 @@
 
         document.getElementById('orderForm').onsubmit = async (e) => {
             e.preventDefault();
-            
             if (isSending) return;
 
             const btn = document.getElementById('btnConfirmar');
@@ -348,9 +360,14 @@
             btn.innerText = "ENVIANDO...";
             btn.disabled = true;
 
-            let resumenParaEnviar = carrito.map(item => 
-                `${item.cantidad}x ${item.tipo} (${item.color}, Talla ${item.talla})`
-            ).join(" | ");
+            let resumenParaEnviar = "";
+            for (let i = 0; i < carrito.length; i++) {
+                const item = carrito[i];
+                resumenParaEnviar += `${item.cantidad}x ${item.tipo} (${item.color}, Talla ${item.talla})`;
+                if (i < carrito.length - 1) {
+                    resumenParaEnviar += " | ";
+                }
+            }
 
             const datos = {
                 nombre: document.getElementById('nombre').value.trim(),
